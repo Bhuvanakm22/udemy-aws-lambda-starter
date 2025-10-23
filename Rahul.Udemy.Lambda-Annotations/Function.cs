@@ -24,7 +24,7 @@ public class Function
     /// <param name="context"></param>
     /// <returns></returns>
     [LambdaFunction]
-    [HttpApi(LambdaHttpMethod.Get, "users/{userId}")]
+    [HttpApi(LambdaHttpMethod.Get, "/users/{userId}")]
     public async Task<User> FunctionHandler(string userId, ILambdaContext context)
     {
         Guid.TryParse(userId, out var id);
@@ -32,7 +32,7 @@ public class Function
     }
 
     [LambdaFunction]
-    [HttpApi(LambdaHttpMethod.Post, "users")]
+    [HttpApi(LambdaHttpMethod.Post, "/users")]
     public async Task PostFunctionHandler([FromBody] User user, ILambdaContext context)
     {
         await _dynamoDbContext.SaveAsync(user);
